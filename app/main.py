@@ -24,4 +24,3 @@ def copy_file(command: str) -> None:
             dst.write(content)
     except FileNotFoundError:
         return
-   

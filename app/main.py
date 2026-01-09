@@ -10,13 +10,13 @@ def copy_file(command: str) -> None:
     source = parts[1]
     target = parts[2]
 
-    if source == target:
-        return
-
-    if not os.path.isfile(source):
-        return
-
     try:
+        if source == target:
+            return
+
+        if not os.path.isfile(source):
+            return
+        
         with open(source, "r") as src:
             content = src.read()
 

@@ -3,19 +3,26 @@ import os
 
 def copy_file(command: str) -> None:
     parts = command.split()
+    validador = True
 
     if len(parts) != 3 or parts[0] != "cp":
+        validador = False
         return
 
     source = parts[1]
     target = parts[2]
 
-    if not os.path.exists(source):
-        print("Error: el archivo origen no existe")
+    if source == target:
+        validador = False
         return
 
-    with open(source, "r") as src:
-        content = src.read()
+    if not os.path.isfile(source):
+        validador = False
+        return
+    
+    if validador:
+        with open(source, "r") as src:
+            content = src.read()
 
-    with open(target, "w") as dst:
-        dst.write(content)
+        with open(target, "w") as dst:
+            dst.write(content)

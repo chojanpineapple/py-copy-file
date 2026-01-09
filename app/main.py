@@ -1,17 +1,21 @@
-def copy_file(command: str) -> None:
-    files = command.split()
+import os
 
-    if len(files) != 3 or files[0] != "cp":
-        print("Comando inválido")
+
+def copy_file(command: str) -> None:
+    parts = command.split()
+
+    if len(parts) != 3 or parts[0] != "cp":
         return
 
-    file1 = files[1]
-    file2 = files[2]
+    source = parts[1]
+    target = parts[2]
 
-    try:
-        with open(file1, "r") as f1, open(file2, "w") as f2:
-            f2.write(f1.read())
-    except FileNotFoundError:
+    if not os.path.exists(source):
         print("Error: el archivo origen no existe")
-    except Exception as e:
-        print("Error:", e)
+        return
+
+    with open(source, "r") as src:
+        content = src.read()
+
+    with open(target, "w") as dst:
+        dst.write(content)

@@ -7,15 +7,15 @@ def copy_file(command: str) -> None:
     if len(parts) != 3 or parts[0] != "cp":
         return
 
-    source = parts[1]
-    target = parts[2]
+    source_filename = parts[1]
+    target_filename = parts[2]
 
-    if source == target:
+    if source_filename == target_filename:
         return
 
-    if not os.path.isfile(source):
+    if not os.path.isfile(source_filename):
         return
 
-    with open(source, "r") as src, open(target, "x") as dst:
+    with open(source_filename, "r") as src, open(target_filename, "w") as dst:
         content = src.read()
         dst.write(content)

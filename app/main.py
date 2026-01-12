@@ -16,7 +16,6 @@ def copy_file(command: str) -> None:
     if not os.path.isfile(source):
         return
 
-
     with open(source, "r") as src, open(target, "x") as dst:
         content = src.read()
         dst.write(content)
